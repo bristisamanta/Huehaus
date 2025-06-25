@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HueHaus - Virtual Interior Design Studio</title>
+    <meta name="description" content="Design your space, your way — in 3D. HueHaus is a virtual interior design studio where creativity meets comfort.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <h1 class="nav-logo">HueHaus</h1>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#templates">Templates</a>
+                    <button class="btn btn-primary" onclick="showRoomSelector()">Start Designing</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="hero-title-line">Design with Ease.</span>
+                            <span class="hero-title-line coral">Style with AI.</span>
+                            <span class="hero-title-line cream">Welcome to HueHaus</span>
+                        </h1>
+                        <p class="hero-description">
+                            Step into your <span class="highlight">creative sanctuary</span> — where AI meets interior design. 
+                            Transform any space with intelligent suggestions, 3D visualization, and effortless drag-and-drop placement.
+                        </p>
+                        
+                        <div class="hero-features">
+                            <div class="hero-feature">
+                                <i data-lucide="brain"></i>
+                                <span>AI Suggestions</span>
+                            </div>
+                            <div class="hero-feature">
+                                <i data-lucide="move"></i>
+                                <span>Drag & Drop</span>
+                            </div>
+                            <div class="hero-feature">
+                                <i data-lucide="eye"></i>
+                                <span>3D Visualization</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="showRoomSelector()">
+                                Start Designing
+                                <i data-lucide="arrow-right"></i>
+                            </button>
+                            <button class="btn btn-outline" onclick="showRoomSelector()">
+                                <i data-lucide="sparkles"></i>
+                                Try AI Layout
+                            </button>
+                        </div>
+                        
+                        <p class="hero-note">✨ No downloads. No fuss. Just pure creativity.</p>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <div class="room-preview">
+                            <img id="heroImage" src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=800&q=80" alt="Beautiful room design">
+                            <div class="room-indicator">
+                                <span id="roomName">Living Room</span>
+                            </div>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-element pink"></div>
+                            <div class="floating-element blue"></div>
+                            <div class="floating-element green"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h3>HueHaus</h3>
+                        <p>Paint your vision. Place your world. Create beautiful interior designs with our intuitive 3D planner.</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#templates">Templates</a>
+                        <a href="#demo">Try Demo</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Support</h4>
+                        <a href="#help">Help Center</a>
+                        <a href="#contact">Contact Us</a>
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4>Get in Touch</h4>
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <span>bristisamanta2005@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <span>San Francisco, CA</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p class="footer-credit">
+                        Made with <i data-lucide="heart"></i> by Bristi Samanta
+                    </p>
+                    <p class="footer-copyright">© 2024 HueHaus. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Room Selector Modal -->
+    <div id="roomSelector" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Which room would you like to design today?</h2>
+                <p>Choose a room type to get started with pre-configured layouts and furniture suggestions</p>
+                <button class="modal-close" onclick="hideRoomSelector()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <div class="room-grid">
+                <div class="room-card" onclick="startPlanner('living-room')">
+                    <div class="room-icon">
+                        <i data-lucide="home"></i>
+                    </div>
+                    <h3>Living Room</h3>
+                    <p>Design a cozy and inviting living space</p>
+                    <button class="btn btn-primary">Select Room</button>
+                </div>
+                
+                <div class="room-card" onclick="startPlanner('bedroom')">
+                    <div class="room-icon">
+                        <i data-lucide="bed"></i>
+                    </div>
+                    <h3>Bedroom</h3>
+                    <p>Create your perfect restful sanctuary</p>
+                    <button class="btn btn-primary">Select Room</button>
+                </div>
+                
+                <div class="room-card" onclick="startPlanner('kitchen')">
+                    <div class="room-icon">
+                        <i data-lucide="chef-hat"></i>
+                    </div>
+                    <h3>Kitchen</h3>
+                    <p>Plan your culinary workspace</p>
+                    <button class="btn btn-primary">Select Room</button>
+                </div>
+                
+                <div class="room-card" onclick="startPlanner('dining-room')">
+                    <div class="room-icon">
+                        <i data-lucide="utensils"></i>
+                    </div>
+                    <h3>Dining Room</h3>
+                    <p>Design an elegant dining experience</p>
+                    <button class="btn btn-primary">Select Room</button>
+                </div>
+                
+                <div class="room-card" onclick="startPlanner('office')">
+                    <div class="room-icon">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <h3>Office</h3>
+                    <p>Create a productive work environment</p>
+                    <button class="btn btn-primary">Select Room</button>
+                </div>
+                
+                <div class="room-card" onclick="startPlanner('custom')">
+                    <div class="room-icon">
+                        <i data-lucide="square-dashed-mouse-pointer"></i>
+                    </div>
+                    <h3>Custom Room</h3>
+                    <p>Start with a blank canvas</p>
+                    <button class="btn btn-primary">Select Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Planner Page -->
+    <div id="plannerPage" class="page">
+        <!-- Header -->
+        <header class="planner-header">
+            <div class="header-left">
+                <button class="btn btn-ghost" onclick="goHome()">
+                    <i data-lucide="home"></i>
+                    Back
+                </button>
+                <h1 id="plannerTitle">Living Room Designer</h1>
+            </div>
+            
+            <div class="header-right">
+                <button id="darkModeBtn" class="btn btn-outline" onclick="toggleDarkMode()">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button class="btn btn-outline" onclick="undo()">
+                    <i data-lucide="undo"></i>
+                </button>
+                <button class="btn btn-outline" onclick="redo()">
+                    <i data-lucide="redo"></i>
+                </button>
+                <button class="btn btn-primary" onclick="suggestLayout()">
+                    <i data-lucide="brain"></i>
+                    Suggest Layout
+                </button>
+            </div>
+        </header>
+
+        <div class="planner-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- AI Suggestions -->
+                <div id="aiSuggestions" class="sidebar-section">
+                    <h3>
+                        <i data-lucide="brain"></i>
+                        AI Suggestions
+                    </h3>
+                    <div id="suggestionsList" class="suggestions-list"></div>
+                </div>
+
+                <!-- View Controls -->
+                <div class="sidebar-section">
+                    <h3>
+                        <i data-lucide="eye"></i>
+                        View Controls
+                    </h3>
+                    <div class="view-controls">
+                        <button id="gridToggle" class="btn btn-outline" onclick="toggleGrid()">
+                            <i data-lucide="grid-3x3"></i>
+                            Snap to Grid
+                        </button>
+                        <div class="zoom-controls">
+                            <button class="btn btn-outline" onclick="zoomOut()">
+                                <i data-lucide="zoom-out"></i>
+                            </button>
+                            <span id="zoomLevel">100%</span>
+                            <button class="btn btn-outline" onclick="zoomIn()">
+                                <i data-lucide="zoom-in"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Furniture -->
+                <div class="sidebar-section">
+                    <h3>Add Furniture</h3>
+                    <div class="furniture-grid">
+                        <button class="furniture-btn" onclick="addFurniture('sofa')">
+                            <i data-lucide="sofa"></i>
+                            <span>Sofa</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('chair')">
+                            <i data-lucide="armchair"></i>
+                            <span>Chair</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('table')">
+                            <i data-lucide="table"></i>
+                            <span>Table</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('bed')">
+                            <i data-lucide="bed"></i>
+                            <span>Bed</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('lamp')">
+                            <i data-lucide="lamp"></i>
+                            <span>Lamp</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('plant')">
+                            <i data-lucide="flower"></i>
+                            <span>Plant</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('tv')">
+                            <i data-lucide="tv"></i>
+                            <span>TV</span>
+                        </button>
+                        <button class="furniture-btn" onclick="addFurniture('bookshelf')">
+                            <i data-lucide="book"></i>
+                            <span>Shelf</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Selected Item Controls -->
+                <div id="selectedControls" class="sidebar-section" style="display: none;">
+                    <h3>Selected Item</h3>
+                    <div class="movement-grid">
+                        <div></div>
+                        <button class="btn btn-outline" onclick="moveItem('up')">
+                            <i data-lucide="arrow-up"></i>
+                        </button>
+                        <div></div>
+                        <button class="btn btn-outline" onclick="moveItem('left')">
+                            <i data-lucide="arrow-left"></i>
+                        </button>
+                        <button class="btn btn-outline" onclick="rotateItem()">
+                            <i data-lucide="rotate-cw"></i>
+                        </button>
+                        <button class="btn btn-outline" onclick="moveItem('right')">
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                        <div></div>
+                        <button class="btn btn-outline" onclick="moveItem('down')">
+                            <i data-lucide="arrow-down"></i>
+                        </button>
+                        <div></div>
+                    </div>
+                    
+                    <div class="scale-controls">
+                        <button class="btn btn-outline" onclick="scaleItem(-0.1)">
+                            <i data-lucide="minus"></i>
+                        </button>
+                        <span>Scale</span>
+                        <button class="btn btn-outline" onclick="scaleItem(0.1)">
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="color-section">
+                        <label>Furniture Color</label>
+                        <div id="furnitureColors" class="color-grid"></div>
+                    </div>
+                    
+                    <button class="btn btn-outline btn-danger" onclick="removeSelected()">
+                        <i data-lucide="trash-2"></i>
+                        Remove
+                    </button>
+                </div>
+
+                <!-- Room Colors -->
+                <div class="sidebar-section">
+                    <h3>
+                        <i data-lucide="palette"></i>
+                        Room Colors
+                    </h3>
+                    <div class="color-section">
+                        <label>Wall Color</label>
+                        <div id="wallColors" class="color-grid"></div>
+                    </div>
+                    <div class="color-section">
+                        <label>Floor Color</label>
+                        <div id="floorColors" class="color-grid"></div>
+                    </div>
+                </div>
+
+                <!-- Atmosphere -->
+                <div class="sidebar-section">
+                    <h3>Atmosphere</h3>
+                    <div class="lighting-controls">
+                        <button class="lighting-btn active" data-lighting="daylight" onclick="setLighting('daylight')">
+                            <i data-lucide="sun"></i>
+                            Daylight
+                        </button>
+                        <button class="lighting-btn" data-lighting="warm" onclick="setLighting('warm')">
+                            <i data-lucide="lightbulb"></i>
+                            Warm Light
+                        </button>
+                        <button class="lighting-btn" data-lighting="night" onclick="setLighting('night')">
+                            <i data-lucide="moon"></i>
+                            Night Mode
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas Area -->
+            <div class="canvas-area">
+                <div class="canvas-container">
+                    <canvas id="designCanvas" width="800" height="600"></canvas>
+                </div>
+                <p class="canvas-note">Use mouse wheel to zoom, middle mouse button to pan.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Include jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Your HTML canvas or 3D container -->
+<div id="design-area">
+  <!-- This would be your 3D view or main canvas -->
+</div>
+
+<button onclick="downloadPDF()">Download as PDF</button>
+
+<script>
+  async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+
+    const element = document.getElementById('design-area');
+
+    // Use html2canvas to convert DOM to image
+    const canvas = await html2canvas(element, { backgroundColor: null });
+    const imgData = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF({
+      orientation: 'landscape',
+      unit: 'px',
+      format: [canvas.width, canvas.height]
+    });
+
+    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.save('HueHaus_Room_Design.pdf');
+  }
+</script>
+
+<!-- Include html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
