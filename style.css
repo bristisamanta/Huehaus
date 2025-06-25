@@ -201,6 +201,7 @@ body.dark-mode {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
+    padding: 8 px;
 }
 
 .hero-title-line:nth-child(1) { animation-delay: 0s; }
@@ -700,6 +701,7 @@ body.dark-mode {
     transition: var(--transition);
     font-size: 0.75rem;
     font-weight: 500;
+    color: red;
 }
 
 .furniture-btn:hover {
