@@ -201,7 +201,7 @@ body.dark-mode {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
-    padding: 8 px;
+    padding: 14 px;
 }
 
 .hero-title-line:nth-child(1) { animation-delay: 0s; }
